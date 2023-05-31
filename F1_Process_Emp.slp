@@ -8,7 +8,13 @@
             "src_id": "11111111-1111-1111-1111-000000000000",
             "src_view_id": "output0"
         },
-        "link101": {
+        "link103": {
+            "dst_id": "11111111-1111-1111-1111-000000000003",
+            "dst_view_id": "input0",
+            "src_id": "11111111-1111-1111-1111-000000000002",
+            "src_view_id": "output0"
+        },
+        "link104": {
             "dst_id": "11111111-1111-1111-1111-000000000002",
             "dst_view_id": "input0",
             "src_id": "11111111-1111-1111-1111-000000000001",
@@ -38,9 +44,17 @@
         },
         "input": {},
         "output": {
-            "11111111-1111-1111-1111-000000000002_output0": {
+            "11111111-1111-1111-1111-000000000002_output1": {
                 "label": {
-                    "value": "Mapper - output0"
+                    "value": "Router - output1"
+                },
+                "view_type": {
+                    "value": "document"
+                }
+            },
+            "11111111-1111-1111-1111-000000000003_output0": {
+                "label": {
+                    "value": "Filter - output0"
                 },
                 "view_type": {
                     "value": "document"
@@ -96,6 +110,24 @@
             "11111111-1111-1111-1111-000000000002": {
                 "error": {},
                 "grid_x_int": 3,
+                "grid_y_int": 1,
+                "index": null,
+                "input": {},
+                "output": {
+                    "output1": {
+                        "dx_int": 0,
+                        "dy_int": 1,
+                        "rot_int": 0
+                    }
+                },
+                "recommendation_id": null,
+                "rot_int": 0,
+                "rot_tail_int": 0,
+                "source": "snap catagory"
+            },
+            "11111111-1111-1111-1111-000000000003": {
+                "error": {},
+                "grid_x_int": 4,
                 "grid_y_int": 1,
                 "index": null,
                 "input": {},
@@ -166,7 +198,7 @@
                     },
                     "filePath": {
                         "expression": false,
-                        "value": "Emp.xlsx"
+                        "value": "Employee Sample Data.xlsx"
                     },
                     "preventURLEncoding": {
                         "value": false
@@ -282,8 +314,8 @@
             }
         },
         "11111111-1111-1111-1111-000000000002": {
-            "class_id": "com-snaplogic-snaps-transform-datatransform",
-            "class_version": 4,
+            "class_id": "com-snaplogic-snaps-flow-router",
+            "class_version": 2,
             "instance_id": "11111111-1111-1111-1111-000000000002",
             "property_map": {
                 "error": {
@@ -301,7 +333,92 @@
                 },
                 "info": {
                     "label": {
-                        "value": "Mapper"
+                        "value": "Router"
+                    },
+                    "notes": {}
+                },
+                "input": {
+                    "input0": {
+                        "label": {
+                            "value": "input0"
+                        },
+                        "view_type": {
+                            "value": "document"
+                        }
+                    }
+                },
+                "output": {
+                    "output0": {
+                        "label": {
+                            "value": "output0"
+                        },
+                        "view_type": {
+                            "value": "document"
+                        }
+                    },
+                    "output1": {
+                        "label": {
+                            "value": "output1"
+                        },
+                        "view_type": {
+                            "value": "document"
+                        }
+                    }
+                },
+                "settings": {
+                    "execution_mode": {
+                        "value": "Validate & Execute"
+                    },
+                    "firstMatch": {
+                        "value": true
+                    },
+                    "routes": {
+                        "value": [
+                            {
+                                "expression": {
+                                    "expression": true,
+                                    "value": "$Country == \"United States\""
+                                },
+                                "outputViewName": {
+                                    "value": "output0"
+                                }
+                            },
+                            {
+                                "expression": {
+                                    "expression": true,
+                                    "value": "true"
+                                },
+                                "outputViewName": {
+                                    "value": "output1"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "view_serial": 100
+            }
+        },
+        "11111111-1111-1111-1111-000000000003": {
+            "class_id": "com-snaplogic-snaps-flow-filter",
+            "class_version": 2,
+            "instance_id": "11111111-1111-1111-1111-000000000003",
+            "property_map": {
+                "error": {
+                    "error0": {
+                        "label": {
+                            "value": "error0"
+                        },
+                        "view_type": {
+                            "value": "document"
+                        }
+                    },
+                    "error_behavior": {
+                        "value": "fail"
+                    }
+                },
+                "info": {
+                    "label": {
+                        "value": "Filter"
                     },
                     "notes": {}
                 },
@@ -329,49 +446,12 @@
                     "execution_mode": {
                         "value": "Validate & Execute"
                     },
+                    "filterExpression": {
+                        "expression": true,
+                        "value": "$Department == \"IT\""
+                    },
                     "nullSafeAccess": {
                         "value": false
-                    },
-                    "passThrough": {
-                        "value": false
-                    },
-                    "transformations": {
-                        "value": {
-                            "mappingRoot": {
-                                "value": "$"
-                            },
-                            "mappingTable": {
-                                "value": [
-                                    {
-                                        "expression": {
-                                            "expression": true,
-                                            "value": "$['Last Name'] + \", \" + $['First Name']"
-                                        },
-                                        "targetPath": {
-                                            "value": "$FullName"
-                                        }
-                                    },
-                                    {
-                                        "expression": {
-                                            "expression": true,
-                                            "value": "$Emp"
-                                        },
-                                        "targetPath": {
-                                            "value": "$EmployeeNo"
-                                        }
-                                    },
-                                    {
-                                        "expression": {
-                                            "expression": true,
-                                            "value": "$['Dept ']"
-                                        },
-                                        "targetPath": {
-                                            "value": "$Dept"
-                                        }
-                                    }
-                                ]
-                            }
-                        }
                     }
                 },
                 "view_serial": 100
